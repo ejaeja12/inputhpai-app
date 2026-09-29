@@ -8,6 +8,7 @@ import InputCurrency from "../input-currency"
 import InputNumber from "../input-number"
 import { Input } from "../ui/input"
 import { formatSetRupiah } from "@/lib/utils"
+import { getWibTime } from "@/lib/utils"
 
 type inputItems = {
   id: number
@@ -72,7 +73,7 @@ export default function HomeContainer() {
       alert("Ada field yang kosong")
       return
     }
-    const bonHeader = "==== Belanja HPAI ===="
+    const bonHeader = `*=== Belanja HPAI  \u2014  ${getWibTime()} ====*`
     const bonMember = `Name \t: ${member.name} \nId \t\t: ${member.id} \n${member.phone && `phone :  ${member.phone}`}`
     const bonItem = items
       .map(

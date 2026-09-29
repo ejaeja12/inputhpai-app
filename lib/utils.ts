@@ -27,3 +27,13 @@ export const removeNonDigits = (str: string | number) => {
 
 export const formatSetRupiah = (v: string | number) =>
   formatRupiah(removeNonDigits(v))
+
+export const getWibTime = () => {
+  const timeWIB = new Date().toLocaleString("id-ID", {
+    timeZone: "Asia/Jakarta",
+    dateStyle: "long",
+    timeStyle: "short",
+  })
+
+  return timeWIB
+}
