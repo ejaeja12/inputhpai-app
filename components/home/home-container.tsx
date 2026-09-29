@@ -73,19 +73,20 @@ export default function HomeContainer() {
       alert("Ada field yang kosong")
       return
     }
+
     const bonHeader = `*=== Belanja HPAI  \u2014  ${getWibTime()} ====*`
-    const bonMember = `Name \t: ${member.name} \nId \t\t: ${member.id} \n${member.phone && `phone :  ${member.phone}`}`
+    const bonMember = `Name \t: ${member.name} \nId \t\t: ${member.id} ${member.phone && `\nphone :  ${member.phone}`}\n\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014`
     const bonItem = items
       .map(
         (i) =>
           i.name &&
           i.count > 0 &&
           i.price > 0 &&
-          `${i.name} \t\t${i.count} \tx \t${formatSetRupiah(i.price)} \t= \t${formatSetRupiah(i.sum)}`
+          `*${i.name}${i.name.length < 5 ? "\t\t\t" : "\t"} ${i.count}* \t\u2022\`\`\`${formatSetRupiah(i.price).split("Rp")[1].split(".")[0]}\`\`\` = \`\`\`${formatSetRupiah(i.sum)}\`\`\``
       )
       .join("\n")
 
-    const finalBon = `${bonHeader}\n\n${bonMember}\n${bonItem} \n\n *Total : ${formatSetRupiah(member.total)}*`
+    const finalBon = `${bonHeader}\n\n${bonMember}\n${bonItem} \n\n\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\n *Total : ${formatSetRupiah(member.total)}*`
     const url = `https://wa.me/${process.env.NEXT_PUBLIC_HP}?text=${encodeURIComponent(finalBon)}`
     window.open(url, "_blank")
   }
@@ -161,7 +162,6 @@ export default function HomeContainer() {
               <InputNumber
                 label="Count"
                 index={index}
-                required
                 displayValue={item.count}
                 handleInput={(val) =>
                   updateItem(item.id, {
